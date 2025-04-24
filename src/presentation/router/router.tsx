@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import {   AssistantPage} from '../pages';
+import { AssistantPage} from '../pages';
 import { DashboardLayout } from '../layouts/DashboardLayout';
 
 export const menuRoutes = [
@@ -79,10 +79,9 @@ export const router = createBrowserRouter([
         element: route.component
       })),
       {
-        path: '',
+        path: '/assistant',
         element: <Navigate to={ menuRoutes[0].to } />
       }
-
     ],
   }
 ])
