@@ -1,20 +1,11 @@
 import { useState } from "react";
-import {
-  GptMessage,
-  MyMessage,
-  TextMessageBox,
-  TypingLoader,
-} from "../../components";
-import { orthographyUseCase } from "../../../core/use-cases";
+import { GptMessage, MyMessage, TextMessageBox, TypingLoader } from "../components";
 
 interface Message {
   text: string;
   isGpt: boolean;
-  info?: {
-    message: string;
-  };
 }
-export const OrthographyPage = () => {
+export const ChatTemplate = () => {
   // State to manage the messages
   const [messages, setMessages] = useState<Message[]>([]);
   // State to manage the loading state
@@ -27,25 +18,7 @@ export const OrthographyPage = () => {
       { text: text, isGpt: false },
     ]);
 
-    //backend call
-    const data = await orthographyUseCase(text);
-    if (!data.ok) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: "No se ha podido realizar la correcion", isGpt: true },
-      ]);
-    } else {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          text: data.message,
-          isGpt: true,
-          info: { 
-            message : data.message
-          },
-        },
-      ]);
-    }
+    // TODO: use case
     setLoading(false);
     //TODO add isGpt to the true
   };
@@ -58,7 +31,7 @@ export const OrthographyPage = () => {
           {/* Render the messages  */}
           {messages.map((message, index) =>
             message.isGpt ? (
-              <GptMessage key={index} text={message.text} />
+              <GptMessage key={index} text={"esto viene de ChatGPT"} />
             ) : (
               <MyMessage key={index} text={message.text} />
             )
