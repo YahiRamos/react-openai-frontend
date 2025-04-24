@@ -10,7 +10,6 @@ export const TextMessageBoxFile = ({
   onSendMessage,
   placeholder,
   disableCorrections = false,
-  accept,
 }: Props) => {
   //state to manage the message
   const [message, setMessage] = useState<string>("");
